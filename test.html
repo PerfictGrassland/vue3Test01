@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        /* 怪异盒子，IE盒子 */
+      }
+      html {
+        /* font-size: calc(100vw / 750 * 16); */
+        font-size: calc(100vw / 750 * 100);
+      }
+
+      .box {
+        width: 100px;
+        height: 100px;
+        font-size: 20px;
+        /* line-height: 2; */
+        line-height: 40px;
+        /* line-height: 200%; */
+        background-color: red;
+      }
+      .item {
+        width: 50px;
+        height: 50px;
+        font-size: 30px;
+        /* line-height: 40px; */
+        background-color: blue;
+      }
+
+      .clearFix::after {
+        display: block;
+        /* display: table; */
+        content: "";
+        clear: both;
+      }
+
+      .clearFix::after {
+        zoom: 1;
+      }
+
+      .f-container {
+        /* float: left; */
+        /* width: 46.875rem; */
+        /* width: 23.4375rem; */
+        width: 3.75rem;
+        padding: 20px;
+        background-color: red;
+      }
+      .f-box {
+        float: left;
+        width: 1rem;
+        height: 100px;
+        background-color: blue;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <div class="item"></div>
+    </div>
+
+    <div class="f-container clearFix">
+      <span class="f-box">11</span>
+    </div>
+
+    <input type="text" id="searchInput" />
+
+    <script>
+      // 匹配美元符号后的数字
+      // let text = "The price is $12.34";
+      // let pattern = /(?<=\$)\d+(\.\d{2})?/;
+      // console.log(text.match(pattern)); // Output: ["12.34"]
+
+      //   let text = "The price is $12.34 $55.66";
+      //   let pattern = /(?<=\$)\d+(\.\d{2})?/g;
+      //   console.log(text.match(pattern)); // Output: ["12.34"]
+
+      // let text = "The price is $12.34";
+      // let pattern = /(?<=s*)\d+(\.\d{2})?/;
+      // console.log(text.match(pattern)); // Output: ["12.34"]
+
+      // let text = "name{{555}}Err";
+      // let pattern = /(?<=\w\{\{)\d+(?=\}\}Err)/;
+      // console.log(text.match(pattern)); // Output: ["12.34"]
+
+      // let text = "name{{555}}Err";
+      // let pattern = /(?<!\d)(\{\{)\d+(\}\})(?!\d)/;
+      // console.log(text.match(pattern)); // Output: ["12.34"]
+
+      // function Person(name) {
+      //   this.name = name;
+      // }
+
+      // const alice = new Person("Alice");
+
+      // console.log(alice instanceof Person); // true
+      // console.log(alice instanceof Object); // true
+      // console.log(alice instanceof Array); // false
+      // console.log(
+      //   "[ Object.getPrototypeOf(alice) ] >",
+      //   Object.getPrototypeOf(alice) === Person.prototype
+      // ); // true
+      // console.log(
+      //   "[ Person.protoType.isPrototypeOf(alice) ] >",
+      //   Person.prototype.isPrototypeOf(alice)
+      // );
+
+      // function Car(make, model) {
+      //   this.make = make;
+      //   this.model = model;
+      // }
+      // const myCar = new Car("Toyota", "Camry");
+      // console.log(Object.getPrototypeOf(myCar) === Car.prototype, myCar.__proto__ === Car.prototype); // true
+
+      // class Animal {
+      //   constructor(name) {
+      //     this.name = name;
+      //   }
+      // }
+      // const dog = new Animal("Buddy");
+      // console.log(dog.constructor === Animal); // true
+      // console.log(dog.constructor === Object); // false
+
+      // function Shape() {}
+      // function Circle() {}
+      // Circle.prototype = Object.create(Shape.prototype);
+      // console.log('%c [  Circle.prototype ]-96', 'font-size:13px; background:pink; color:#bf2c9f;',  Circle.prototype === Shape.prototype)
+      // // Circle.prototype.constructor = Circle; // 修正constructor指向问题
+      // // Circle.prototype = Shape.prototype;
+      // const c = new Circle();
+
+      // console.log('[ alice instanceof Object ] >', c instanceof Object) // true
+      // console.log('[ alice instanceof Circle ] >', c instanceof Circle) // true
+      // console.log('[ alice instanceof Shape ] >', c instanceof Shape) // true
+
+      // console.log(Shape.prototype.isPrototypeOf(c)); // true
+      // console.log(Circle.prototype.isPrototypeOf(c)); // true
+      // console.log(Object.prototype.isPrototypeOf(c)); // true
+
+      // console.log(Object.getPrototypeOf(c) === Circle.prototype, c.__proto__ === Circle.prototype); // true, true
+      // console.log(Object.getPrototypeOf(c) === Shape.prototype, c.__proto__ === Shape.prototype); // false, false
+
+      // console.log(c.constructor === Circle); // false
+      // console.log(c.constructor === Shape); // true
+
+      // // 父类
+      // function Parent(name) {
+      //   this.name = name;
+      //   this.colors = ["red", "blue", "green"];
+      // }
+
+      // Parent.prototype.sayName = function () {
+      //   console.log(this.name);
+      // };
+
+      // // 子类
+      // function Child(name, age) {
+      //   // 继承父类的实例属性
+      //   Parent.call(this, name);
+      //   this.age = age;
+      // }
+
+      // // 继承父类的原型方法
+      // Child.prototype = new Parent();
+      // Child.prototype.constructor = Child;
+
+      // // 测试
+      // var child1 = new Child("Tom", 6);
+      // child1.colors.push("black");
+      // console.log(child1, child1.colors, child1.__proto__.colors); // ['red', 'blue', 'green', 'black']
+
+      // var child2 = new Child("Jerry", 8);
+      // console.log(child2); // ['red', 'blue', 'green']
+
+      // child1.sayName(); // Tom
+      // child2.sayName(); // Jerry
+
+      // const originalObj = { a: 1, b: { c: 2 }, c: undefined, d: function(){}, e: Symbol(), e: new RegExp('d'), f: new Date() };
+      // const copiedObj = JSON.parse(JSON.stringify(originalObj));
+      // console.log('%c [ copiedObj ]-149', 'font-size:13px; background:pink; color:#bf2c9f;', copiedObj)
+
+      // 防抖
+      // function debounce(fn, delay = 0, ...outargs) {
+      //   this.aa = 11;
+      //   let timer = null;
+      //   return function (...args) {
+      //     this.aa = 888;
+      //     console.log("[ this ] >", this);
+      //     if (timer) {
+      //       clearTimeout(timer);
+      //     }
+      //     timer = setTimeout(() => {
+      //       fn.apply(this, [...outargs, ...args]);
+      //       // fn(...outargs, ...args)
+      //     }, delay);
+      //   };
+      // }
+
+      // 搜索框防抖
+      // let searchInput = document.getElementById("searchInput");
+      // let handleSearch = debounce(
+      //   function () {
+      //     // 执行搜索操作
+      //     console.log("执行搜索", this, this.aa, arguments);
+      //   },
+      //   500,
+      //   66,
+      //   77
+      // );
+
+      // searchInput.addEventListener('input', function() {
+      //   handleSearch.bind(this, 1,2,3)();
+      // });
+      // searchInput.addEventListener('input', handleSearch);
+      // searchInput.addEventListener(
+      //   "input",
+      //   handleSearch.bind(searchInput, 1, 2, 3)
+      // );
+
+      // 节流
+      // function throttle(fn, delay) {
+      //   this.bb = 11;
+      //   let lastCallBackTime = 0;
+      //   return function (...args) {
+      //     this.bb = 99;
+      //     let currentTime = new Date().getTime();
+      //     console.log("[ this ] >", this, currentTime, lastCallBackTime, currentTime - lastCallBackTime >= delay);
+      //     if (currentTime - lastCallBackTime >= delay) {
+      //       lastCallBackTime = currentTime;
+      //       fn.apply(this, args);
+      //     }
+      //   };
+      // }
+
+      // function throttle(fn, delay) {
+      //   let inThrottle = false;
+      //   this.bb = 11;
+      //   return function (...args) {
+      //    this.bb = 22;
+      //    console.log('%c [ 调用 ]: ', 'color: #bf2c9f; background: pink; font-size: 13px;', '调用')
+      //    if(!inThrottle) {
+      //     inThrottle = true;
+      //     setTimeout(() => {
+      //       inThrottle = false; // 执行一次，delay秒后放开限制才能执行下一次
+      //       console.log('[ 到时间，可以执行下一次函数了 ] >', inThrottle)
+      //       fn.apply(this, args);
+      //     }, delay);
+      //    }
+      //   };
+      // }
+
+      // function throttle(fn, delay) {
+      //   let timer = null;
+      //   let isFirstTime = true;
+      //   this.bb = 11;
+      //   return function (...args) {
+      //     this.bb = 22;
+      //     if (isFirstTime) {
+      //       fn.apply(this, [...args]);
+      //       isFirstTime = false;
+      //       console.log("[ 第一次执行 ] >", this);
+      //     } else {
+      //       if (timer) {
+      //         console.log(
+      //           "%c [ 有定时器，暂时执行回调函数 ]: ",
+      //           "color: #bf2c9f; background: pink; font-size: 13px;",
+      //           "有定时器，暂时执行回调函数"
+      //         );
+      //         return false;
+      //       }
+      //       timer = setTimeout(() => {
+      //         clearTimeout(timer);
+      //         timer = null; //将timer进行初始化，
+      //         fn.apply(this, [...args]);
+      //         console.log("[定时器执行 ] >", this);
+      //       }, delay);
+      //     }
+      //   };
+      // }
+
+      // // 窗口大小调整事件节流
+      // let handleResize = throttle(function () {
+      //   // 执行窗口大小调整事件处理逻辑
+      //   console.log("执行窗口大小调整事件处理", this, this.bb);
+      // }, 100);
+      // // DOMContentLoaded
+      // // load
+      // window.addEventListener("DOMContentLoaded", handleResize);
+      // window.addEventListener("resize", handleResize);
+
+      // const numbers = [1, 2, 3, 4, 5];
+      // let sum = 0;
+
+      // numbers.forEach((num) => {
+      //   sum += num;
+      //   console.log('%c [ sum ]-302', 'font-size:13px; background:pink; color:#bf2c9f;', sum, num)
+      //   if (sum >= 10) {
+      //     // 无法中断循环,只能退出当前回调
+      //     console.log('[ 无法中断循环,只能退出当前回调 ] >')
+      //     return;
+      //   }
+      //   // sum += num;
+      //   // console.log('%c [ sum ]-302', 'font-size:13px; background:pink; color:#bf2c9f;', sum, num)
+      // });
+
+      // console.log(sum); // 输出: 15
+
+      // const numbers = [1, 2, 3, 4, 5];
+      // let sum = 0;
+
+      // for (let i = 0; i < numbers.length; i++) {
+      //   sum += numbers[i];
+      //   if (sum >= 10) {
+      //     break; // 中断循环
+      //   }
+      // }
+
+      // console.log(sum); // 输出: 10
+
+      // function TestFn() {
+      //   this.aa = 11;
+      //   this.aaa = Symbol();
+      // }
+      // TestFn.prototype.bb = 22;
+      // TestFn.prototype.cc = 33;
+      // const obj = new TestFn();
+      // obj[Symbol('c')] = 33;
+      // for(let key in obj) {
+      //   console.log('[ key ] >', obj, key, Object.keys(obj), Reflect.ownKeys(obj), Object.prototype.hasOwnProperty.call(obj, key))
+      // }
+    </script>
+  </body>
+</html>
