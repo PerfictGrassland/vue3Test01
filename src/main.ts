@@ -43,6 +43,4 @@ app.directive('demo', (el, binding) => {
 app.use(createPinia());
 app.use(router);
 
-console.log('%c [ 测试删除记录 ]: ', 'color: #bf2c9f; background: pink; font-size: 13px;', '测试删除记录')
-
 app.mount("#app");
