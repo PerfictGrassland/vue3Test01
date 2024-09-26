@@ -8,7 +8,7 @@ const { x, y } = useMouse()
 const { data, error } = useFetch('...')
 // console.log('%c [ data, error ]-8', 'font-size:13px; background:pink; color:#bf2c9f;', data, error)
 
-import { ref } from 'vue';
+import { getCurrentInstance, ref } from 'vue';
 const modelValue = ref('');// 默认 prop 从 value 改为 modelValu
 const name = ref('')
 const address = ref('')
@@ -31,6 +31,10 @@ const vFocus = {
     // console.log('[ el, binding, vnode, prevVnod ] >', el, binding, vnode, prevVnod)
   }
 }
+
+const Instance = getCurrentInstance();
+console.log('%c [ appContext ]-733', 'font-size:13px; background:pink; color:#bf2c9f;', Instance)
+const $translate = Instance?.appContext.config.globalProperties.$translate;
 </script>
 
 <template>

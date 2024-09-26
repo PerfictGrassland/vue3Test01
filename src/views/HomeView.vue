@@ -33,7 +33,7 @@ console.log(account.balance2, BankAccount.staticProp); // Error: Private field '
 // console.log(account.#balance); // Error: Private field '#balance' must be declared in an enclosing class
 
 
-import { computed, isRef, onBeforeMount, onBeforeUnmount, onMounted, onUnmounted, provide, reactive, ref, watch, watchEffect } from 'vue';
+import { computed, getCurrentInstance, isRef, onBeforeMount, onBeforeUnmount, onMounted, onUnmounted, provide, reactive, ref, watch, watchEffect } from 'vue';
 import { cloneDeep } from 'lodash';
 import TheWelcome from '../components/TheWelcome.vue'
 import CounterA from './CounterA.vue'
@@ -729,6 +729,9 @@ const countModel = ref(0);
 const countModel2 = ref(0);
 
 
+const Instance = getCurrentInstance();
+console.log('%c [ appContext ]-733', 'font-size:13px; background:pink; color:#bf2c9f;', Instance)
+const $translate = Instance?.appContext.config.globalProperties.$translate;
 
 </script>
 
@@ -761,6 +764,10 @@ const countModel2 = ref(0);
     <button @click="postTest2">测试post接口2</button>
     <button @click="postTest3">测试post接口3</button>
     <button @click="createItem">测试post接口4</button>
+
+    <h2>插件</h2>
+    <h1>{{ $translate('greetings.aa.hello') }}</h1>
+    <h1>{{ $translate('greetings.goodbye') }}</h1>
 
     <div>
       <h2>Counter</h2>
