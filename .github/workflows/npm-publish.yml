@@ -28,7 +28,7 @@ jobs:
             username: ${{ secrets.USERNAME }}
             password: ${{ secrets.PASSWORD }}
             local-dir: "./dist/"
-            server-dir: ${{ secrets.SERVER_DESTINATION }}
+            server-dir: ${{ secrets.SERVER_DESTINATION }}/
       # - name: Upload to SFTP
       #   uses: wangyucode/sftp-upload-action@v2.0.2  # 更新到新版本
       #   with:
