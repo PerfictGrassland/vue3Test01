@@ -759,6 +759,8 @@ const $translate = Instance?.appContext.config.globalProperties.$translate;
       <button @click="increment">Increment</button>
     </div> -->
     <h1>删除再修改东西001</h1>
+    <h1>删除再修改东西001</h1>
+    <h1>删除再修改东西001</h1>
     <button @click="updateThemeColor">Update Theme Color</button>
 
     <button @click="postTest1">测试post接口1</button>
