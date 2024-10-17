@@ -11,8 +11,6 @@ on:
     pull_request:
         branches: [master] #master分支在PR的时候会触发
 
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE20: true
 jobs:
   build:
     runs-on: ubuntu-latest
